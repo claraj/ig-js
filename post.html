@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+<div>
+    <img src="cake.jpg">
+</div>
+
+<div>
+    <img id="like-icon" src="heart-outline.png">
+    <p id="like-count">Be the first to like this</p>
+</div>
+
+<!--instagram says "Be the first to like this" when a post has no likes -->
+<!--It says "1 like" or "4 likes" if a post has likes. -->
+
+<!-- Image attributions -->
+<p>Cake image, Deva Williamson, <a href="https://unsplash.com/photos/S2jw81lfrG0">Unsplash</a></p>
+<a href="https://www.flaticon.com/free-icons/heart" title="heart icons">Heart icons created by Kiranshastry - Flaticon</a>
+
+<script>
+
+    let likeIconElement = document.querySelector('#like-icon')
+    let likeCountElement = document.querySelector('#like-count')
+
+    // TODO ask server how many likes this post has
+    // Here we'll just set some example valid initial values
+    let likeCount = 0
+    let userLikesPost = false
+
+    updateLikeCount(likeCount, likeCountElement)
+    updateLikeIcon(userLikesPost, likeIconElement)
+
+
+    likeIconElement.addEventListener('click', function() {
+        if (userLikesPost) {
+            userLikesPost = false
+            likeCount = likeCount - 1
+            updateLikeCount(likeCount, likeCountElement)
+            updateLikeIcon(userLikesPost, likeIconElement)
+        } else {
+            userLikesPost = true
+            likeCount = likeCount + 1
+            updateLikeCount(likeCount, likeCountElement)
+            updateLikeIcon(userLikesPost, likeIconElement)
+        }
+    })
+
+    function updateLikeCount(likeCount, likeCountElement) {
+        if (likeCount === 0) {
+            likeCountElement.innerHTML = 'Be the first to like this'
+        } else if (likeCount === 1) {
+            likeCountElement.innerHTML = '1 like'
+        } else {
+            likeCountElement.innerHTML =  `${likeCount} likes`
+        }
+    }
+
+    function updateLikeIcon(userLikesPost, likeIconElement) {
+        if (userLikesPost) {
+            likeIconElement.src = 'heart-filled.png'
+        } else {
+            likeIconElement.src = 'heart-outline.png'
+        }
+    }
+
+
+</script>
+
+
+</body>
+</html>

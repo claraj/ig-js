@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        button {
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+
+<h1>Instagram</h1>
+
+<h2>Minneapolis College</h2>
+
+<button id="follow">Follow</button>
+
+<script>
+
+    let followButton = document.querySelector('#follow')
+
+    // TODO ask server if we are following this user or not
+    let following = false
+    followButton.style.color = 'white'
+    followButton.style.background = 'dodgerblue'
+
+    followButton.addEventListener('click', function() {
+        following = !following
+        if (following) {
+            followButton.innerHTML = 'Following'
+            followButton.classList.toggle('following')
+            followButton.style.color = 'black'
+            followButton.style.background = 'lightgray'
+            // TODO tell server this user is now following Minneapolis College
+        } else {
+            followButton.innerHTML = 'Follow'
+            followButton.style.color = 'white'
+            followButton.style.background = 'dodgerblue'
+            // TODO tell server this user has unfollowed Minneapolis College
+        }
+
+    })
+
+</script>
+
+
+
+</body>
+</html>
